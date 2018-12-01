@@ -7,7 +7,9 @@ import { store } from "./store";
 import { getAllPatients } from "./actions/patientActions";
 
 // ---------COMPONENTS----------
-import Body from "./components/Body/Body";
+import Navbar from "./components/Navbar/Navbar";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 class App extends Component {
   componentDidMount() {
@@ -17,11 +19,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <i className="fa fa-fighter-jet" />
-          <h1 className="App-title">Wound Central</h1>
-        </header>
-        <Body />
+        <Navbar />
+        <Sidebar />
+        <Dashboard />
       </div>
     );
   }

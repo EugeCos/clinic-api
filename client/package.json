@@ -19,7 +19,7 @@
     "thunk": "0.0.1"
   },
   "scripts": {
-    "start": "set PORT=5000 && node scripts/customized-config start",
+    "start": "node scripts/customized-config start",
     "build": "node scripts/customized-config build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
