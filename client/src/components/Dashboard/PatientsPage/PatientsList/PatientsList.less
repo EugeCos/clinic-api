@@ -1,0 +1,34 @@
+.patients-list-container {
+  border-top: 1px solid rgb(202, 202, 202);
+  margin: 20px auto;
+  height: auto;
+  min-height: 400px;
+}
+
+.severity-tooltip {
+  position: relative;
+  display: inline-block;
+  margin-right: 50px !important;
+  border: 1px solid gray;
+  border-radius: 25px;
+}
+
+.severity-tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  font-size: 80%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 7px 5px;
+  margin-left: 30px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.severity-tooltip:hover .tooltiptext {
+  visibility: visible;
+}
