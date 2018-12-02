@@ -1,13 +1,19 @@
-import { GET_ALL_PATIENTS } from "../actions/types";
+import { GET_ALL_PATIENTS, PATIENTS_LOADING } from "../actions/types";
 
-const initialState = { patients: null };
+const initialState = { patientsList: null, loading: false };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_PATIENTS:
       return {
         ...state,
-        patients: action.payload
+        patientsList: action.payload,
+        loading: false
+      };
+    case PATIENTS_LOADING:
+      return {
+        ...state,
+        loading: true
       };
 
     default:

@@ -1,10 +1,11 @@
-import axios from "axios";
-import { GET_ALL_PATIENTS } from "./types";
+import api from "../api";
+import { GET_ALL_PATIENTS, PATIENTS_LOADING } from "./types";
 
 // Get all patients
 export const getAllPatients = () => dispatch => {
-  axios
-    .get("/patients")
+  dispatch(setPatientsLoading());
+  api
+    .getAllPatients()
     .then(res =>
       dispatch({
         type: GET_ALL_PATIENTS,
@@ -17,4 +18,11 @@ export const getAllPatients = () => dispatch => {
         payload: {}
       })
     );
+};
+
+// Patients loading
+export const setPatientsLoading = () => {
+  return {
+    type: PATIENTS_LOADING
+  };
 };

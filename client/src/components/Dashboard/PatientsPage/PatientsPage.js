@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import "./PatientsPage.less";
 
 // -----------Components------------
 import PageHeader from "../../Common/PageHeader/PageHeader";
 import PatientsList from "./PatientsList/PatientsList";
+import ButtonsContainer from "./ButtonsContainer/ButtonsContainer";
 
-// --------Material UI----------
-import RaisedButton from "material-ui/RaisedButton";
+// ---------Redux------------
+import { connect } from "react-redux";
 
-const buttonStyle = { margin: "0 20px", width: "180px" };
+// ----------React-CSS-Transition-Group-----------
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-export default class PatientsPage extends Component {
+class PatientsPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,15 +24,13 @@ export default class PatientsPage extends Component {
   navigateToAnotherPage = clickOption => {
     switch (clickOption) {
       case "previous":
-        this.setState({
+        return this.setState({
           pageNumber: this.state.pageNumber - 1
         });
-        break;
       case "next":
-        this.setState({
+        return this.setState({
           pageNumber: this.state.pageNumber + 1
         });
-        break;
       default:
         return;
     }
@@ -37,48 +38,56 @@ export default class PatientsPage extends Component {
 
   render() {
     const { pageNumber } = this.state;
-    const buttonsJSX =
-      pageNumber > 1 ? (
-        <Fragment>
-          <RaisedButton
-            label="Previous 10 patients"
-            style={buttonStyle}
-            secondary={true}
-            labelStyle={{ fontFamily: "Quattrocento Sans" }}
-            onClick={() => this.navigateToAnotherPage("previous")}
-          />
-          <RaisedButton
-            label="Next 10 patients"
-            style={buttonStyle}
-            secondary={true}
-            labelStyle={{ fontFamily: "Quattrocento Sans" }}
-            onClick={() => this.navigateToAnotherPage("next")}
-          />
-        </Fragment>
-      ) : (
-        <RaisedButton
-          label="Next 10 patients"
-          style={buttonStyle}
-          secondary={true}
-          labelStyle={{ fontFamily: "Quattrocento Sans" }}
-          onClick={() => this.navigateToAnotherPage("next")}
-        />
-      );
+    const { patients, loading } = this.props;
+
+    // Transition group effects
+    const transitionOptions = {
+      transitionName: "fade-effect",
+      transitionAppear: true,
+      transitionAppearTimeout: 200,
+      transitionEnterTimeout: 200,
+      transitionLeaveTimeout: 200
+    };
+
     return (
-      <Fragment>
+      <ReactCSSTransitionGroup {...transitionOptions}>
         <PageHeader pageText={"Patients List"} />
         <div className="patients-page-container">
           <div className="patients-page-header-wrapper">
             {/* Page number on the LEFT side */}
-            <h4>Page {pageNumber}</h4>
+            <div>
+              <h4>Page {pageNumber}</h4>
+              <small>Max 10 patients per page</small>
+            </div>
 
             {/* Buttons on the right side */}
-            <div className="patients-page-buttons-container">{buttonsJSX}</div>
+            <div>
+              <ButtonsContainer
+                pageNumber={pageNumber}
+                navigateToAnotherPage={this.navigateToAnotherPage}
+              />
+            </div>
           </div>
 
-          <PatientsList />
+          <PatientsList
+            patients={patients}
+            pageNumber={pageNumber}
+            loading={loading}
+          />
         </div>
-      </Fragment>
+      </ReactCSSTransitionGroup>
     );
   }
 }
+
+PatientsPage.propTypes = {
+  patients: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  patients: state.patients.patientsList,
+  loading: state.patients.loading
+});
+
+export default connect(mapStateToProps)(PatientsPage);
