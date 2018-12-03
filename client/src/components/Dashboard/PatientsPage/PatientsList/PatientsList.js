@@ -54,11 +54,6 @@ export default class PatientsList extends Component {
                   }`}
                   secondaryText={`Room number: ${patientData.roomNumber}`}
                   leftAvatar={<Avatar src={patientData.avatarUrl} />}
-                  rightIcon={
-                    <div className="severity-tooltip">
-                      <span className="tooltiptext">Injury severity level</span>
-                    </div>
-                  }
                 />
               </ReactCSSTransitionGroup>
             </Link>

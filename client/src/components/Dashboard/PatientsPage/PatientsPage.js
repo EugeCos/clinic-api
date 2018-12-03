@@ -9,7 +9,10 @@ import ButtonsContainer from "./ButtonsContainer/ButtonsContainer";
 
 // ---------Redux------------
 import { connect } from "react-redux";
-import { getAllPatients } from "../../../actions/patientActions";
+import {
+  getAllPatients,
+  clearWoundsList
+} from "../../../actions/patientActions";
 
 class PatientsPage extends Component {
   constructor() {
@@ -21,6 +24,7 @@ class PatientsPage extends Component {
 
   componentDidMount() {
     this.props.getAllPatients();
+    this.props.clearWoundsList();
   }
 
   navigateToAnotherPage = clickOption => {
@@ -50,7 +54,7 @@ class PatientsPage extends Component {
             {/* Page number on the LEFT side */}
             <div>
               <h4>Page {pageNumber}</h4>
-              <small>Max 10 patients per page</small>
+              <small>10 patients per page</small>
             </div>
 
             {/* Buttons on the right side */}
@@ -76,7 +80,8 @@ class PatientsPage extends Component {
 PatientsPage.propTypes = {
   patients: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  getAllPatients: PropTypes.func.isRequired
+  getAllPatients: PropTypes.func.isRequired,
+  clearWoundsList: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -86,5 +91,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllPatients }
+  { getAllPatients, clearWoundsList }
 )(PatientsPage);

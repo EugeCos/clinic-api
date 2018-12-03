@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./PatientProfile.less";
 import moment from "moment";
@@ -16,10 +17,17 @@ import Checkmark from "./svg/checkmark.svg";
 
 // -----------Redux-------------
 import { connect } from "react-redux";
-import { getAllPatients, getWounds } from "../../../../actions/patientActions";
+import {
+  getAllPatients,
+  getWounds,
+  resolveWound
+} from "../../../../actions/patientActions";
 
 // ---------Components----------
 import PageHeader from "../../../Common/PageHeader/PageHeader";
+
+// Style for all buttons within this container
+const buttonStyle = { margin: "15px 0 5px" };
 
 class PatientProfile extends Component {
   constructor() {
@@ -56,9 +64,16 @@ class PatientProfile extends Component {
     this.setState({ dialogOpen: false, clickedWoundImage: null });
   };
 
+  handleClick = woundId => {
+    // Patch request expects woundId to be a string, not a number
+    const woundNumberToString = woundId.toString();
+    this.props.resolveWound(woundNumberToString);
+  };
+
   render() {
     const patientId = this.props.match.params.patientId;
     const selectedPatient = this.props.patients[patientId - 1];
+    const { currentPage, wounds } = this.props;
 
     return (
       <Fragment>
@@ -66,10 +81,14 @@ class PatientProfile extends Component {
         <ProfileContainer>
           {this.props.patients.length ? (
             <Fragment>
-              <PatientDetailsWrapper patient={selectedPatient} />
+              <PatientDetailsWrapper
+                patient={selectedPatient}
+                currentPage={currentPage}
+              />
               <WoundsWrapper
                 handleDialogOpen={this.handleDialogOpen}
-                wounds={this.props.wounds}
+                handleClick={this.handleClick}
+                wounds={wounds}
               />
             </Fragment>
           ) : (
@@ -97,18 +116,21 @@ class PatientProfile extends Component {
 PatientProfile.propTypes = {
   getAllPatients: PropTypes.func,
   getWounds: PropTypes.func.isRequired,
+  resolveWound: PropTypes.func.isRequired,
   patients: PropTypes.array.isRequired,
-  wounds: PropTypes.array.isRequired
+  wounds: PropTypes.array.isRequired,
+  currentPage: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
   patients: state.patients.patientsList,
-  wounds: state.patients.woundsForSelectedPatient
+  wounds: state.patients.woundsForSelectedPatient,
+  currentPage: state.currentPage
 });
 
 export default connect(
   mapStateToProps,
-  { getAllPatients, getWounds }
+  { getAllPatients, getWounds, resolveWound }
 )(PatientProfile);
 
 // Profile container
@@ -119,6 +141,7 @@ const ProfileContainer = ({ ...props }) => {
 
 const PatientDetailsWrapper = ({ ...props }) => {
   const patient = props.patient.attributes;
+  const { currentPage } = props;
 
   return (
     <div className="patient-details-wrapper">
@@ -153,13 +176,26 @@ const PatientDetailsWrapper = ({ ...props }) => {
         </div>
       </div>
       <i>Last updated on {moment(patient.updatedAt).format("MMMM D, YYYY")}</i>
+      <br />
+      <hr className="hr-styled" />
+
+      <Link to={`${currentPage === "search" ? "/search" : "/patients"}`}>
+        <RaisedButton
+          labelStyle={{ fontFamily: "Quattrocento Sans" }}
+          label={`${
+            currentPage === "search"
+              ? "Return to search"
+              : "Return to patient list"
+          }`}
+          style={buttonStyle}
+        />
+      </Link>
     </div>
   );
 };
 
 const WoundsWrapper = ({ ...props }) => {
-  const { handleDialogOpen, wounds } = props;
-  const resolveButtonStyle = { margin: "15px 0 5px" };
+  const { handleDialogOpen, handleClick, wounds } = props;
   let woundCounter = 0;
 
   let woundsJSX = wounds.map(item => {
@@ -180,15 +216,19 @@ const WoundsWrapper = ({ ...props }) => {
 
           {/* Wound description */}
           <div className="wound-description-wrapper">
-            <h3>
+            <h4>
               <span>Type: </span>
               <strong>{wound.type}</strong>
-            </h3>
-            <h3>
+            </h4>
+            <h4>
               <span>Location: </span>
               <strong>{wound.bodyLocation}</strong>
-            </h3>
-            <h4>Acquired in house: {wound.inHouseAcquired}</h4>
+            </h4>
+            <h4 className="wound-description-acquired-font">
+              {wound.inHouseAcquired
+                ? "Wound developed while patient was in care center"
+                : "Wound developed outside care center"}
+            </h4>
           </div>
 
           {/* Wound status */}
@@ -207,7 +247,8 @@ const WoundsWrapper = ({ ...props }) => {
               <RaisedButton
                 labelStyle={{ fontFamily: "Quattrocento Sans" }}
                 label="Resolve"
-                style={resolveButtonStyle}
+                style={buttonStyle}
+                onClick={() => handleClick(item.id)}
               />
             )}
           </div>

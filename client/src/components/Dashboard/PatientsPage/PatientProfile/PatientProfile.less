@@ -1,6 +1,6 @@
 .profile-page-container {
   margin: 20px auto;
-  width: 90%;
+  width: 95%;
   height: auto;
   background: #fff;
   display: flex;
@@ -24,7 +24,7 @@
 
 .patient-avatar-outline {
   margin: 30px 0 20px;
-  border: 9px solid #dfe6e9;
+  border: 10px solid #dfe6e9;
   background: #dfe6e9;
   border-radius: 6px;
 }
@@ -79,7 +79,7 @@
   padding-bottom: 60px;
 
   h3 {
-    margin: 15px 0 8px;
+    margin: 25px 0 8px;
     font-weight: 100;
   }
 
@@ -93,15 +93,20 @@
   }
 }
 
-// Individual wound wrapper || container width 100%
+// Individual wound wrapper // container width 100%
 .individual-wound-wrapper {
   width: 100%;
   border-bottom: 1px solid #ccc;
   display: flex;
   padding: 10px 0;
+  transition: background 0.1s ease-in;
+
+  &:hover {
+    background: rgb(243, 243, 243);
+  }
 }
 
-// Wound number wrapper || container width 8%
+// Wound number wrapper // container width 8%
 .wound-number-wrapper {
   width: 8%;
   display: flex;
@@ -125,33 +130,31 @@
   }
 }
 
-// Wound description wrapper || container width 42%
+// Wound description wrapper // container width 42%
 .wound-description-wrapper {
   width: 42%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  line-height: 1px;
 
-  h3,
   h4 {
     margin-left: 10px;
+    line-height: 22px;
   }
 
-  h4 {
-    line-height: 40px;
+  .wound-description-acquired-font {
+    margin-top: 14px;
     color: grey;
   }
 }
 
-// Wound status wrapper || container width 25%
+// Wound status wrapper // container width 25%
 .wound-status-wrapper {
   width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //   border: 1px solid red;
 
   .wound-status-color {
     letter-spacing: 2px;
@@ -168,7 +171,7 @@
   }
 }
 
-// Wound picture wrapper || container width 25%
+// Wound picture wrapper // container width 25%
 .wound-picture-wrapper {
   width: 25%;
   //   border: 1px solid red;

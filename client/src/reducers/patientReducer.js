@@ -1,6 +1,8 @@
 import {
   GET_ALL_PATIENTS,
   GET_WOUNDS_FOR_SELECTED_PATIENT,
+  CLEAR_WOUNDS_LIST,
+  RESOLVE_WOUND,
   LOADING
 } from "../actions/types";
 
@@ -23,6 +25,18 @@ export default function(state = initialState, action) {
         ...state,
         woundsForSelectedPatient: action.payload,
         loading: false
+      };
+    case CLEAR_WOUNDS_LIST:
+      return {
+        ...state,
+        woundsForSelectedPatient: action.payload
+      };
+    case RESOLVE_WOUND:
+      return {
+        ...state,
+        woundsForSelectedPatient: state.woundsForSelectedPatient.map(wound =>
+          wound.id === action.payload.id ? action.payload : wound
+        )
       };
     case LOADING:
       return {
