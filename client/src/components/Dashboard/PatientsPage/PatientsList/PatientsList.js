@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./PatientsList.less";
+
+// ----------React-CSS-Transition-Group-----------
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 // -----------Material UI------------
 import { List, ListItem } from "material-ui/List";
@@ -12,6 +16,15 @@ import Spinner from "../../../Common/Spinner/Spinner";
 export default class PatientsList extends Component {
   render() {
     const { patients, pageNumber, loading } = this.props;
+
+    // Transition group effects
+    const transitionOptions = {
+      transitionName: "fade-effect",
+      transitionAppear: true,
+      transitionAppearTimeout: 500,
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500
+    };
     let patientJSX,
       arraySliceStart = 0,
       arraySliceEnd = 10;
@@ -29,17 +42,26 @@ export default class PatientsList extends Component {
         .map(patient => {
           const patientData = patient.attributes;
           return (
-            <ListItem
+            <Link
+              to={`/patients/${patient.id}`}
               key={patient.id}
-              primaryText={`${patientData.firstName} ${patientData.lastName}`}
-              secondaryText={`Room number: ${patientData.roomNumber}`}
-              leftAvatar={<Avatar src={patientData.avatarUrl} />}
-              rightIcon={
-                <div className="severity-tooltip">
-                  <span className="tooltiptext">Injury severity level</span>
-                </div>
-              }
-            />
+              style={{ textDecoration: "none" }}
+            >
+              <ReactCSSTransitionGroup {...transitionOptions}>
+                <ListItem
+                  primaryText={`${patientData.firstName} ${
+                    patientData.lastName
+                  }`}
+                  secondaryText={`Room number: ${patientData.roomNumber}`}
+                  leftAvatar={<Avatar src={patientData.avatarUrl} />}
+                  rightIcon={
+                    <div className="severity-tooltip">
+                      <span className="tooltiptext">Injury severity level</span>
+                    </div>
+                  }
+                />
+              </ReactCSSTransitionGroup>
+            </Link>
           );
         });
     }

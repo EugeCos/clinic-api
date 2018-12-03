@@ -1,0 +1,185 @@
+.profile-page-container {
+  margin: 20px auto;
+  width: 90%;
+  height: auto;
+  background: #fff;
+  display: flex;
+
+  i {
+    font-size: 80%;
+    color: grey;
+    margin-top: 5px;
+  }
+}
+
+// --------Patient personal details (left side of container)-----------
+.patient-details-wrapper {
+  width: 25%;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.patient-avatar-outline {
+  margin: 30px 0 20px;
+  border: 9px solid #dfe6e9;
+  background: #dfe6e9;
+  border-radius: 6px;
+}
+.patient-avatar {
+  height: 130px;
+  width: 130px;
+  border-radius: 6px;
+  display: block;
+}
+
+.room-bed-wrapper {
+  margin: 5px;
+  display: flex;
+  width: 45%;
+  justify-content: space-between;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  img {
+    height: 25px;
+    margin-right: 10px;
+  }
+}
+
+.dob-address-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0 15px;
+
+  p {
+    line-height: 1px;
+  }
+}
+
+.hr-styled {
+  width: 70%;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+// --------------------------------------------------------------------
+
+// --------Wounds details (right side of container)-------------------
+.wounds-wrapper {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+
+  h3 {
+    margin: 15px 0 8px;
+    font-weight: 100;
+  }
+
+  h4 {
+    font-weight: 100;
+  }
+
+  .hr-styled {
+    width: 30%;
+    margin-bottom: 20px;
+  }
+}
+
+// Individual wound wrapper || container width 100%
+.individual-wound-wrapper {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  padding: 10px 0;
+}
+
+// Wound number wrapper || container width 8%
+.wound-number-wrapper {
+  width: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .wound-number {
+    // margin-top: 3px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid rgba(56, 56, 56, 0.356);
+  }
+
+  .injury-status-icon {
+    margin-top: 12px;
+    width: 20px;
+  }
+}
+
+// Wound description wrapper || container width 42%
+.wound-description-wrapper {
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1px;
+
+  h3,
+  h4 {
+    margin-left: 10px;
+  }
+
+  h4 {
+    line-height: 40px;
+    color: grey;
+  }
+}
+
+// Wound status wrapper || container width 25%
+.wound-status-wrapper {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  //   border: 1px solid red;
+
+  .wound-status-color {
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .green {
+    color: rgb(0, 197, 0);
+  }
+
+  .red {
+    color: red;
+  }
+}
+
+// Wound picture wrapper || container width 25%
+.wound-picture-wrapper {
+  width: 25%;
+  //   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .wound-picture {
+    width: 110px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+}
+// --------------------------------------------------------------------

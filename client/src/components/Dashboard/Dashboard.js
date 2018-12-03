@@ -6,6 +6,7 @@ import "./Dashboard.less";
 import LandingPage from "./LandingPage/LandingPage";
 import PatientsPage from "./PatientsPage/PatientsPage";
 import SearchPage from "./SearchPage/SearchPage";
+import PatientProfile from "./PatientsPage/PatientProfile/PatientProfile";
 
 export default class Dashboard extends Component {
   render() {
@@ -13,8 +14,9 @@ export default class Dashboard extends Component {
       <div className="dashboard-container">
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/patients" component={PatientsPage} />
-          <Route path="/search" component={SearchPage} />
+          <Route exact path="/patients" component={PatientsPage} />
+          <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/patients/:patientId" component={PatientProfile} />
         </Switch>
       </div>
     );

@@ -9,9 +9,7 @@ import ButtonsContainer from "./ButtonsContainer/ButtonsContainer";
 
 // ---------Redux------------
 import { connect } from "react-redux";
-
-// ----------React-CSS-Transition-Group-----------
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import { getAllPatients } from "../../../actions/patientActions";
 
 class PatientsPage extends Component {
   constructor() {
@@ -19,6 +17,10 @@ class PatientsPage extends Component {
     this.state = {
       pageNumber: 1
     };
+  }
+
+  componentDidMount() {
+    this.props.getAllPatients();
   }
 
   navigateToAnotherPage = clickOption => {
@@ -40,17 +42,8 @@ class PatientsPage extends Component {
     const { pageNumber } = this.state;
     const { patients, loading } = this.props;
 
-    // Transition group effects
-    const transitionOptions = {
-      transitionName: "fade-effect",
-      transitionAppear: true,
-      transitionAppearTimeout: 200,
-      transitionEnterTimeout: 200,
-      transitionLeaveTimeout: 200
-    };
-
     return (
-      <ReactCSSTransitionGroup {...transitionOptions}>
+      <Fragment>
         <PageHeader pageText={"Patients List"} />
         <div className="patients-page-container">
           <div className="patients-page-header-wrapper">
@@ -75,14 +68,15 @@ class PatientsPage extends Component {
             loading={loading}
           />
         </div>
-      </ReactCSSTransitionGroup>
+      </Fragment>
     );
   }
 }
 
 PatientsPage.propTypes = {
   patients: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  getAllPatients: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -90,4 +84,7 @@ const mapStateToProps = state => ({
   loading: state.patients.loading
 });
 
-export default connect(mapStateToProps)(PatientsPage);
+export default connect(
+  mapStateToProps,
+  { getAllPatients }
+)(PatientsPage);
