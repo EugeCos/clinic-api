@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import "./SearchPage.less";
+import PatientIcon from "./svg/patient.svg";
 
 // ----------Redux------------
 import { connect } from "react-redux";
@@ -93,11 +94,19 @@ class SearchPage extends Component {
             />
           </div>
 
-          <PatientsList
-            patients={filteredPatientsList}
-            pageNumber={1} // not needed for Search Page but passed anyway so that PropTypes don't complain
-            loading={loading} // not needed for Search Page but passed anyway so that PropTypes don't complain
-          />
+          {filteredPatientsList.length > 0 ? (
+            <PatientsList
+              patients={filteredPatientsList}
+              pageNumber={1} // not needed for Search Page but passed anyway so that PropTypes don't complain
+              loading={loading} // not needed for Search Page but passed anyway so that PropTypes don't complain
+            />
+          ) : (
+            <div className="empty-search-container">
+              <img src={PatientIcon} alt="patient" className="patient-icon" />
+              <h2>Search list is empty</h2>
+              <h3>Start typing first or last name to find a patient</h3>
+            </div>
+          )}
         </div>
       </Fragment>
     );
