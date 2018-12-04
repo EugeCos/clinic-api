@@ -23,6 +23,9 @@ class PatientsPage extends Component {
   }
 
   componentDidMount() {
+    // Scroll to top on component render
+    window.scrollTo(0, 0);
+
     this.props.getAllPatients();
     this.props.clearWoundsList();
   }

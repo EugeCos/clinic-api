@@ -11,6 +11,11 @@ import { updateCurrentPage } from "../../../actions/navigationActions";
 import RaisedButton from "material-ui/RaisedButton";
 
 class LandingPage extends Component {
+  componentDidMount() {
+    // Scroll to top on component render
+    window.scrollTo(0, 0);
+  }
+
   updateCurrentPage = () => {
     this.props.updateCurrentPage("search");
   };

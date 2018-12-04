@@ -1,15 +1,77 @@
-# Wounds Demo Api
+# iWound Patient Management Dashboard
 
-This is a simple example api used for demonstration purposes. It provides access to randomly generated patient and wound resources.
+iWound Patient Management Dashboard is a single page web application that displays randomly generated patients and information on their corresponding wounds. Functionality includes changing the status of a wound from 'Active' to 'Resolved'.
 
-## Running the project
+## Installation
 
-> npm start
+$git clone https://github.com/EugeCos/clinic-api.git <br />$ cd PROJECT <br />
+After cloning is complete, please follow below 2 installations steps:
 
-## Documentation
+###### 1. Navigate to the /PROJECT folder, and enter the following command:
 
-navigate to http://0.0.0.0:3000/patients/documentation to view Swagger docs.
+\$ npm install
+This will install server-side dependencies
 
-## Data Configuration
+###### 2. Navigate to the /client folder located at /PROJECT/client folder, and enter the same command:
 
-If you wish to change the default number of patients and wounds generated on start up, it can be configured in the `model/config.js` file.
+\$ npm install
+This will install client-side dependencies
+
+## Start server and client & watch
+
+Navigate to your /PROJECT folder and run the following command:
+\$ npm run dev
+
+## Simple build for production
+
+\$ npm run build
+
+## API Reference
+
+##### GET requests
+
+/patients <br />
+for list of 50 randomly generated unique patient profiles
+
+/patients/{patientId} <br />
+for specific patient profile
+
+/patients/{patientId}/wounds <br />
+for list of all wounds from a specific patient
+
+/wounds <br />
+for list of all wounds from all patients
+
+/wounds/{woundId} <br />
+for a specific unique wound
+
+##### PATCH requests
+
+/wounds/{woundId}<br />
+for updating data for a specific wound
+
+---
+
+## Tools
+
+- ReactJS - main library
+- Redux - application state management
+- LESS - CSS preprocessing
+- Webpack - watch and compile LESS files
+- Axios - API calls
+- Material UI - front-end framework
+- Concurrently - run client and server simultaneously
+
+---
+
+## Timeline for front-end development
+
+November 29 to December 03, 2018
+
+## Contributors
+
+- Eugene Costov // eugene.costov@gmail.com
+
+## Licence
+
+_iWound Patient Management Dashboard_ is available under MIT.

@@ -39,9 +39,6 @@ class PatientProfile extends Component {
   }
 
   componentWillMount() {
-    // Scroll to top on component render
-    window.scrollTo(0, 0);
-
     // Fetch wounds for selected patient
     const patientId = this.props.match.params.patientId;
     this.props.getWounds(patientId);
