@@ -46,7 +46,7 @@ $ npm run build
 
 ## API Reference
 
-##### GET requests
+### GET requests
 
 ##### /patients
 
@@ -68,7 +68,7 @@ for list of all wounds from all patients
 
 for a specific unique wound
 
-##### PATCH requests
+### PATCH requests
 
 ##### /wounds/{woundId}
 
