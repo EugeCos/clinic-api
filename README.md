@@ -4,27 +4,45 @@ iWound Patient Management Dashboard is a single page web application that displa
 
 ## Installation
 
-$git clone https://github.com/EugeCos/clinic-api.git <br />$ cd PROJECT <br />
+```
+\$ git clone https://github.com/EugeCos/clinic-api.git
+```
+
+```
+\$ cd PROJECT
+```
+
 After cloning is complete, please follow below 2 installations steps:
 
 ###### 1. Navigate to the /PROJECT folder, and enter the following command:
 
+```
 \$ npm install
+```
+
 This will install server-side dependencies
 
 ###### 2. Navigate to the /client folder located at /PROJECT/client folder, and enter the same command:
 
+```
 \$ npm install
+```
+
 This will install client-side dependencies
 
 ## Start server and client & watch
 
 Navigate to your /PROJECT folder and run the following command:
+
+```
 \$ npm run dev
+```
 
 ## Simple build for production
 
+```
 \$ npm run build
+```
 
 ## API Reference
 
@@ -66,7 +84,7 @@ for updating data for a specific wound
 
 ## Timeline for front-end development
 
-November 29 to December 03, 2018
+November 29 to December 3, 2018
 
 ## Contributors
 
