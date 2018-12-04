@@ -4,6 +4,11 @@
   height: auto;
   background: #fff;
   display: flex;
+  @media screen and(max-width: 860px) {
+    width: 100%;
+    flex-direction: column;
+    margin: 20px auto 0;
+  }
 
   i {
     font-size: 80%;
@@ -20,6 +25,11 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 30px;
+  @media screen and(max-width: 860px) {
+    width: 100%;
+    border-right: none;
+    padding-bottom: 0;
+  }
 }
 
 .patient-avatar-outline {
@@ -33,6 +43,10 @@
   width: 130px;
   border-radius: 6px;
   display: block;
+  @media screen and(max-width: 860px) {
+    height: 100px;
+    width: 100px;
+  }
 }
 
 .room-bed-wrapper {
@@ -56,6 +70,9 @@
   flex-direction: column;
   align-items: center;
   margin: 10px 0 15px;
+  @media screen and(max-width: 860px) {
+    margin: 0;
+  }
 
   p {
     line-height: 1px;
@@ -67,6 +84,9 @@
   height: 1px;
   border: 0;
   border-top: 1px solid #ccc;
+  @media screen and(max-width: 860px) {
+    width: 100%;
+  }
 }
 // --------------------------------------------------------------------
 
@@ -77,10 +97,17 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 60px;
+  @media screen and(max-width: 860px) {
+    width: 100%;
+    padding-bottom: 0;
+  }
 
   h3 {
     margin: 25px 0 8px;
     font-weight: 100;
+    @media screen and(max-width: 860px) {
+      margin: 15px 0 8px;
+    }
   }
 
   h4 {
@@ -90,6 +117,9 @@
   .hr-styled {
     width: 30%;
     margin-bottom: 20px;
+    @media screen and(max-width: 860px) {
+      margin-bottom: 8px;
+    }
   }
 }
 
@@ -100,6 +130,12 @@
   display: flex;
   padding: 10px 0;
   transition: background 0.1s ease-in;
+  @media screen and(max-width: 860px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+  }
 
   &:hover {
     background: rgb(243, 243, 243);
@@ -113,20 +149,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media screen and(max-width: 860px) {
+    width: 100%;
+    flex-direction: row;
+  }
 
   .wound-number {
-    // margin-top: 3px;
     width: 40px;
     line-height: 40px;
     border-radius: 50%;
     text-align: center;
     font-size: 18px;
     border: 1px solid rgba(56, 56, 56, 0.356);
+    @media screen and(max-width: 860px) {
+      width: 30px;
+      line-height: 30px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
   }
 
   .injury-status-icon {
     margin-top: 12px;
     width: 20px;
+    @media screen and(max-width: 860px) {
+      margin-top: 0;
+      margin-left: 10px;
+    }
   }
 }
 
@@ -136,15 +185,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media screen and(max-width: 860px) {
+    width: 90%;
+    text-align: center;
+    margin-top: 15px;
+  }
 
   h4 {
     margin-left: 10px;
     line-height: 22px;
+    @media screen and(max-width: 860px) {
+      margin-left: 0;
+    }
   }
 
   .wound-description-acquired-font {
     margin-top: 14px;
     color: grey;
+    @media screen and(max-width: 860px) {
+      margin: 8px 0;
+    }
   }
 }
 
@@ -155,11 +215,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media screen and(max-width: 860px) {
+    width: 100%;
+    flex-direction: row;
+    text-align: center;
+  }
 
   .wound-status-color {
     letter-spacing: 2px;
     font-weight: 600;
     margin-top: 4px;
+    @media screen and(max-width: 860px) {
+      margin-top: 0;
+    }
   }
 
   .green {
@@ -169,20 +237,35 @@
   .red {
     color: red;
   }
+
+  .btn-resolve {
+    @media screen and(max-width: 860px) {
+      position: absolute;
+      top: 1%;
+      right: 5%;
+    }
+  }
 }
 
 // Wound picture wrapper // container width 25%
 .wound-picture-wrapper {
   width: 25%;
-  //   border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and(max-width: 860px) {
+    width: 95%;
+    margin-top: 20px;
+  }
 
   .wound-picture {
     width: 110px;
     cursor: pointer;
     margin-bottom: 5px;
+    @media screen and(max-width: 860px) {
+      width: 75%;
+      pointer-events: none;
+    }
   }
 }
 // --------------------------------------------------------------------

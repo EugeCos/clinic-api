@@ -2,6 +2,9 @@
   margin: 20px auto;
   width: 95%;
   background: #fff;
+  @media screen and(max-width: 860px) {
+    width: 100%;
+  }
 }
 
 .patients-page-header-wrapper {
@@ -9,4 +12,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px 0;
+  @media screen and(max-width: 860px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.patients-page-page-number-wrapper {
+  @media screen and(max-width: 860px) {
+    margin-bottom: 15px;
+  }
 }

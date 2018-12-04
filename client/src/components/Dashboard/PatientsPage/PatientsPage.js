@@ -52,7 +52,7 @@ class PatientsPage extends Component {
         <div className="patients-page-container">
           <div className="patients-page-header-wrapper">
             {/* Page number on the LEFT side */}
-            <div>
+            <div className="patients-page-page-number-wrapper">
               <h4>Page {pageNumber}</h4>
               <small>10 patients per page</small>
             </div>

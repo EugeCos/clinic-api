@@ -31,7 +31,7 @@ class LandingPage extends Component {
       <ReactCSSTransitionGroup {...transitionOptions}>
         <div className="landing-container">
           <h1>Welcome to iWound</h1>
-          <h2>A simple patient management platform</h2>
+          <h3>A simple patient management platform</h3>
           <Link to="search">
             <RaisedButton
               label="Get Started"

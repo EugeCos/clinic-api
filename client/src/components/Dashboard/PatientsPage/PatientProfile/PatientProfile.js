@@ -73,6 +73,7 @@ class PatientProfile extends Component {
   render() {
     const patientId = this.props.match.params.patientId;
     const selectedPatient = this.props.patients[patientId - 1];
+    const screenWidth = window.innerHeight;
     const { currentPage, wounds } = this.props;
 
     return (
@@ -84,6 +85,7 @@ class PatientProfile extends Component {
               <PatientDetailsWrapper
                 patient={selectedPatient}
                 currentPage={currentPage}
+                screenWidth={screenWidth}
               />
               <WoundsWrapper
                 handleDialogOpen={this.handleDialogOpen}
@@ -141,7 +143,7 @@ const ProfileContainer = ({ ...props }) => {
 
 const PatientDetailsWrapper = ({ ...props }) => {
   const patient = props.patient.attributes;
-  const { currentPage } = props;
+  const { currentPage, screenWidth } = props;
 
   return (
     <div className="patient-details-wrapper">
@@ -179,17 +181,21 @@ const PatientDetailsWrapper = ({ ...props }) => {
       <br />
       <hr className="hr-styled" />
 
-      <Link to={`${currentPage === "search" ? "/search" : "/patients"}`}>
-        <RaisedButton
-          labelStyle={{ fontFamily: "Quattrocento Sans" }}
-          label={`${
-            currentPage === "search"
-              ? "Return to search"
-              : "Return to patient list"
-          }`}
-          style={buttonStyle}
-        />
-      </Link>
+      {screenWidth > 1024 ? (
+        <Link to={`${currentPage === "search" ? "/search" : "/patients"}`}>
+          <RaisedButton
+            labelStyle={{ fontFamily: "Quattrocento Sans" }}
+            label={`${
+              currentPage === "search"
+                ? "Return to search"
+                : "Return to patient list"
+            }`}
+            style={buttonStyle}
+          />
+        </Link>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
@@ -233,7 +239,7 @@ const WoundsWrapper = ({ ...props }) => {
 
           {/* Wound status */}
           <div className="wound-status-wrapper">
-            <h4>Wound status:</h4>
+            <h4>Wound status:&nbsp;&nbsp;</h4>
             <h4
               className={`wound-status-color ${
                 wound.resolved ? "green" : "red"
@@ -249,6 +255,7 @@ const WoundsWrapper = ({ ...props }) => {
                 label="Resolve"
                 style={buttonStyle}
                 onClick={() => handleClick(item.id)}
+                className="btn-resolve"
               />
             )}
           </div>
@@ -261,7 +268,7 @@ const WoundsWrapper = ({ ...props }) => {
               className="wound-picture"
               onClick={() => handleDialogOpen(item.id)}
             />
-            <i>Wound visual (click to enlarge)</i>
+            <i>Wound visual</i>
           </div>
         </div>
       </Fragment>

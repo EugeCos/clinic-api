@@ -6,7 +6,7 @@ import "./ButtonsContainer.less";
 import RaisedButton from "material-ui/RaisedButton";
 
 const ButtonsContainer = ({ pageNumber, navigateToAnotherPage }) => {
-  const buttonStyle = { margin: "0 20px", width: "180px" };
+  const buttonStyle = { margin: "5px 20px", width: "180px" };
   switch (pageNumber) {
     case 1:
       return (
