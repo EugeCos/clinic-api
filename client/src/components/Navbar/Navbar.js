@@ -60,6 +60,7 @@ class Navbar extends Component {
           <MenuListMobile
             menuItems={menuItems}
             toggleMenuIcon={toggleMenuIcon}
+            toggleMenuFunction={this.toggleMenuIcon}
             closeMenu={this.closeMenu}
           />
         ) : (
@@ -73,7 +74,7 @@ class Navbar extends Component {
 export default Navbar;
 
 const MenuListMobile = ({ ...props }) => {
-  const { menuItems, toggleMenuIcon, closeMenu } = props;
+  const { menuItems, toggleMenuIcon, toggleMenuFunction, closeMenu } = props;
   let menuItemsJSX = menuItems.map(item => {
     return (
       <Link
@@ -92,7 +93,7 @@ const MenuListMobile = ({ ...props }) => {
       <div className="menu-item-wrapper">{menuItemsJSX}</div>
       {/* Background dark overlay  */}
       <div
-        onClick={toggleMenuIcon}
+        onClick={toggleMenuFunction}
         className="overlay"
         style={
           toggleMenuIcon

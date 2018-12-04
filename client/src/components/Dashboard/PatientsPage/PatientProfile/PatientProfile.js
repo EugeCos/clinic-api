@@ -73,7 +73,6 @@ class PatientProfile extends Component {
   render() {
     const patientId = this.props.match.params.patientId;
     const selectedPatient = this.props.patients[patientId - 1];
-    const screenWidth = window.innerHeight;
     const { currentPage, wounds } = this.props;
 
     return (
@@ -85,7 +84,6 @@ class PatientProfile extends Component {
               <PatientDetailsWrapper
                 patient={selectedPatient}
                 currentPage={currentPage}
-                screenWidth={screenWidth}
               />
               <WoundsWrapper
                 handleDialogOpen={this.handleDialogOpen}
@@ -106,7 +104,7 @@ class PatientProfile extends Component {
           <img
             src={this.state.clickedWoundImage}
             alt="wound"
-            style={{ width: "720px" }}
+            style={{ width: "650px" }}
           />
         </Dialog>
         ;
@@ -143,7 +141,7 @@ const ProfileContainer = ({ ...props }) => {
 
 const PatientDetailsWrapper = ({ ...props }) => {
   const patient = props.patient.attributes;
-  const { currentPage, screenWidth } = props;
+  const { currentPage } = props;
 
   return (
     <div className="patient-details-wrapper">
@@ -181,21 +179,18 @@ const PatientDetailsWrapper = ({ ...props }) => {
       <br />
       <hr className="hr-styled" />
 
-      {screenWidth > 1024 ? (
-        <Link to={`${currentPage === "search" ? "/search" : "/patients"}`}>
-          <RaisedButton
-            labelStyle={{ fontFamily: "Quattrocento Sans" }}
-            label={`${
-              currentPage === "search"
-                ? "Return to search"
-                : "Return to patient list"
-            }`}
-            style={buttonStyle}
-          />
-        </Link>
-      ) : (
-        ""
-      )}
+      <Link to={`${currentPage === "search" ? "/search" : "/patients"}`}>
+        <RaisedButton
+          labelStyle={{ fontFamily: "Quattrocento Sans" }}
+          label={`${
+            currentPage === "search"
+              ? "Return to search"
+              : "Return to patient list"
+          }`}
+          style={buttonStyle}
+          className="btn-return"
+        />
+      </Link>
     </div>
   );
 };
