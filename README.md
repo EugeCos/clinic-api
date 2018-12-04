@@ -5,11 +5,11 @@ iWound Patient Management Dashboard is a single page web application that displa
 ## Installation
 
 ```
-\$ git clone https://github.com/EugeCos/clinic-api.git
+$ git clone https://github.com/EugeCos/clinic-api.git
 ```
 
 ```
-\$ cd PROJECT
+$ cd PROJECT
 ```
 
 After cloning is complete, please follow below 2 installations steps:
@@ -17,7 +17,7 @@ After cloning is complete, please follow below 2 installations steps:
 ###### 1. Navigate to the /PROJECT folder, and enter the following command:
 
 ```
-\$ npm install
+$ npm install
 ```
 
 This will install server-side dependencies
@@ -25,7 +25,7 @@ This will install server-side dependencies
 ###### 2. Navigate to the /client folder located at /PROJECT/client folder, and enter the same command:
 
 ```
-\$ npm install
+$ npm install
 ```
 
 This will install client-side dependencies
@@ -35,37 +35,43 @@ This will install client-side dependencies
 Navigate to your /PROJECT folder and run the following command:
 
 ```
-\$ npm run dev
+$ npm run dev
 ```
 
 ## Simple build for production
 
 ```
-\$ npm run build
+$ npm run build
 ```
 
 ## API Reference
 
 ##### GET requests
 
-/patients <br />
+##### /patients
+
 for list of 50 randomly generated unique patient profiles
 
-/patients/{patientId} <br />
+##### /patients/{patientId}
+
 for specific patient profile
 
-/patients/{patientId}/wounds <br />
+##### /patients/{patientId}/wounds
+
 for list of all wounds from a specific patient
 
-/wounds <br />
+##### /wounds
+
 for list of all wounds from all patients
 
-/wounds/{woundId} <br />
+##### /wounds/{woundId}
+
 for a specific unique wound
 
 ##### PATCH requests
 
-/wounds/{woundId}<br />
+##### /wounds/{woundId}
+
 for updating data for a specific wound
 
 ---
